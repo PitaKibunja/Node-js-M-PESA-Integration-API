@@ -23,3 +23,14 @@
 ::1 - - [13/Apr/2022:12:39:47 +0000] "POST /api/stk/push HTTP/1.1" 200 10
 ::1 - - [13/Apr/2022:12:40:12 +0000] "POST /api/stk/push HTTP/1.1" 200 10
 ::1 - - [13/Apr/2022:12:41:03 +0000] "POST /api/stk/push HTTP/1.1" 200 10
+::1 - - [13/Apr/2022:12:47:54 +0000] "POST /api/stk/push HTTP/1.1" 200 -
+::1 - - [13/Apr/2022:12:53:20 +0000] "POST /api/stk/push HTTP/1.1" 200 28
+::1 - - [13/Apr/2022:12:57:04 +0000] "GET /api/password HTTP/1.1" 200 112
+::1 - - [13/Apr/2022:13:17:39 +0000] "POST /api/stk/push HTTP/1.1" 500 779
+::1 - - [13/Apr/2022:13:21:19 +0000] "POST /api/stk/push HTTP/1.1" - -
+::1 - - [13/Apr/2022:13:23:43 +0000] "POST /api/stk/push HTTP/1.1" - -
+::1 - - [13/Apr/2022:13:26:28 +0000] "POST /api/stk/push HTTP/1.1" - -
+::1 - - [13/Apr/2022:13:27:03 +0000] "POST /api/stk/push HTTP/1.1" 404 152
+::1 - - [13/Apr/2022:13:27:43 +0000] "POST /api/stk/push HTTP/1.1" - -
+::1 - - [13/Apr/2022:13:27:47 +0000] "POST /api/stk/push HTTP/1.1" 404 152
+::1 - - [13/Apr/2022:13:32:47 +0000] "POST /api/stk/push HTTP/1.1" 404 152

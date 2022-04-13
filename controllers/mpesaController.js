@@ -26,10 +26,60 @@ exports.token = (req, res,next) => {
     
     var config = {
         method: 'get',
-        url,
+        url:url,
         headers: { 
           'Authorization': auth
         }
+      };
+      
+      axios(config)
+      .then(function (response) {
+          let data = response.data;
+          let access_token = data.access_token
+          //capture the generated token to be used by the next request (stkPush req)
+          req.token = access_token
+          next()
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+}
+
+//return the password
+exports.mpesaPassword = (req, res) => {
+    res.send(newPassword())   
+}
+
+exports.stkPush = (req, res,next) => {
+    const token=req.token
+    // res.send(token)
+    const auth = 'Bearer ' + token
+    //create a datetime to authenticate the request.
+    const dt = datetime.create()
+    //format date-time to the required format by m-pesa
+    const formarttedTime = dt.format('YmdHMS')
+    var data = JSON.stringify({
+        "BusinessShortCode": "174379",
+        "Password": newPassword(),
+        "Timestamp": formarttedTime,
+        "TransactionType": "CustomerPayBillOnline",
+        "Amount": "1",
+        "PartyA": "254717856149",
+        "PartyB": "174379",
+        "PhoneNumber": "254717856149",
+        "CallBackURL": "https://mydomain.com/path",
+        "AccountReference": "ACK Kirangari Church Donation",
+        "TransactionDesc": "lipa na M-PESA"
+      });
+      
+      var config = {
+        method: 'post',
+        url: 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest',
+        headers: { 
+          'Authorization': auth, 
+          'Content-Type': 'application/json'
+        },
+        data : data
       };
       
       axios(config)
@@ -40,14 +90,4 @@ exports.token = (req, res,next) => {
       .catch(function (error) {
         console.log(error);
       });
-}
-
-//return the password
-exports.mpesaPassword = (req, res) => {
-    res.send(newPassword())
-    
-}
-
-exports.stkPush = (req, res) => {
-    res.send("It is done")
 }
